@@ -34,7 +34,7 @@ module Spree
           params[:q][:completed_at_lt] = params[:q].delete(:created_at_lt)
         end
 
-        @search = Order.ransack(params[:q])
+        @search = Order.accessible_by(current_ability, :index).ransack(params[:q])
         @orders = @search.result.includes([:user, :shipments, :payments]).
           page(params[:page]).
           per(params[:per_page] || Spree::Config[:orders_per_page])
@@ -107,10 +107,27 @@ module Spree
         respond_with(@order) { |format| format.html { redirect_to :back } }
       end
 
+      def open_adjustments
+        adjustments = @order.adjustments.where(:state => 'closed')
+        adjustments.update_all(:state => 'open')
+        flash[:success] = t(:all_adjustments_opened)
+
+        respond_with(@order) { |format| format.html { redirect_to :back } }
+      end
+
+      def close_adjustments
+        adjustments = @order.adjustments.where(:state => 'open')
+        adjustments.update_all(:state => 'closed')
+        flash[:success] = t(:all_adjustments_closed)
+
+        respond_with(@order) { |format| format.html { redirect_to :back } }
+      end
+
       private
 
         def load_order
           @order = Order.find_by_number!(params[:id], :include => :adjustments) if params[:id]
+          authorize! params[:action], @order
         end
 
         # Used for extensions which need to provide their own custom event links on the order details view.
@@ -118,6 +135,9 @@ module Spree
           @order_events = %w{cancel resume}
         end
 
+        def model_class
+          Spree::Order
+        end
     end
   end
 end

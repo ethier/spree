@@ -18,10 +18,9 @@ module Spree
     end
 
     def sync
+      session[:last_jirafe_sync] = DateTime.now
       begin
         store = Spree::Dash::Jirafe.synchronize_resources(store_hash)
-        session[:last_jirafe_sync] = DateTime.now
-        flash[:notice] = "Updated"
         redirect_to admin_path
       rescue Spree::Dash::JirafeException => e
         flash[:error] = e.message
@@ -48,10 +47,14 @@ module Spree
     end
 
     def store_hash
-      url = Spree::Config.site_url || "http://demo.spreecommerce.com"
+      if Spree::Config.site_url.blank? || Spree::Config.site_url.include?("localhost")
+        url = "http://demo.spreecommerce.com"
+      else
+        url = Spree::Config.site_url
+      end
+
       email = "junk@spreecommerce.com"
       name = Spree::Config.site_name || "Spree Store"
-      platform_type = Rails.env.production? ? "spree" : "spree-#{Rails.env}"
 
       store = {
         :first_name    => 'Spree',
@@ -59,14 +62,14 @@ module Spree
         :email         => email,
         :name          => 'Spree Store',
         :url           => format_url(url),
-        :platform_type => platform_type,
         :currency      => 'USD',
         :time_zone     => ActiveSupport::TimeZone::MAPPING['Eastern Time (US & Canada)'],
       }
 
-      if Spree::Dash::Config.app_id.present? && Spree::Dash::Config.app_token.present?
+      if Spree::Dash::Config.configured?
         store[:app_id] = Spree::Dash::Config.app_id
         store[:app_token] = Spree::Dash::Config.app_token
+        store[:site_id] = Spree::Dash::Config.site_id
       end
       store
     end
