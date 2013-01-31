@@ -53,6 +53,7 @@ module Spree
                         :timezone => store[:time_zone],
                         :external_id => 1,
                         :site_id => store[:site_id] }],
+              :platform_type => 'spree',
               :users => users_hash
             }.to_json
           }
