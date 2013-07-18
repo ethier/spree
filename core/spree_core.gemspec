@@ -38,6 +38,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'money', '5.0.0'
   s.add_dependency 'rails', '~> 3.2.13'
   s.add_dependency 'kaminari', '0.13.0'
-  s.add_dependency 'deface', '1.0.0.rc3'
+  s.add_dependency 'deface', '>= 0.9.0'
   s.add_dependency 'stringex', '~> 1.3.2'
 end
