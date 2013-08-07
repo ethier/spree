@@ -248,7 +248,6 @@ $(document).ready(function(){
   $('body').on('click', 'a.remove_fields', function(e) {
     // Ensure that this does not conflict with cocoon.
     if (!$(this).hasClass('existing') && !$(this).hasClass('dynamic')) {
-      if (!$(this).hasClass('existing'
       $(this).prev("input[type=hidden]").val("1");
       $(this).closest(".fields").hide();
       return false;
