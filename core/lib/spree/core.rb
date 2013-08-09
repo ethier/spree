@@ -71,12 +71,12 @@ require 'spree/core/calculated_adjustments'
 require 'spree/core/current_order'
 require 'spree/core/mail_settings'
 require 'spree/core/mail_interceptor'
-require 'spree/core/middleware/redirect_legacy_product_url'
-require 'spree/core/middleware/seo_assist'
+#require 'spree/core/middleware/redirect_legacy_product_url'
+#require 'spree/core/middleware/seo_assist'
 require 'spree/core/permalinks'
 
 silence_warnings do
-  require 'spree/core/authorize_net_cim_hack'
+  #require 'spree/core/authorize_net_cim_hack'
 end
 
 require 'spree/core/version'
