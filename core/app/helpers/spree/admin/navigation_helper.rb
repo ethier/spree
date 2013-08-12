@@ -15,7 +15,7 @@ module Spree
 
         destination_url = options[:url] || spree.send("#{options[:route]}_path")
 
-        titleized_label = t(options[:label], :default => options[:label]).titleize
+        titleized_label = t(options[:label], :default => options[:label]).titleize unless options[:titleize] == false
 
         link = link_to(titleized_label, destination_url)
 
