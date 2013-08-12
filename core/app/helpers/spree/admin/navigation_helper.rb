@@ -17,7 +17,10 @@ module Spree
 
         titleized_label = t(options[:label], :default => options[:label]).titleize unless options[:titleize] == false
 
-        link = link_to(titleized_label, destination_url)
+        label = t(options[:label], :default => options[:label])
+        label = label.titleize unless options[:titleize] == false
+
+        link = link_to(label, destination_url)
 
         css_classes = []
 
