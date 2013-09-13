@@ -9,7 +9,7 @@ Spree::Core::Engine.routes.draw do
 end
 
 Spree::Core::Engine.routes.prepend do
-  resources :users, :only => [:edit, :update]
+  #resources :users, :only => [:edit, :update]
 
   devise_scope :user do
     get '/login' => 'user_sessions#new', :as => :login
