@@ -4,7 +4,7 @@ module Spree
     belongs_to :order
     belongs_to :variant, :class_name => "Spree::Variant"
 
-    has_one :product, :through => :variant
+    has_one :product, :through => :variant, :autosave => false
     has_many :adjustments, :as => :adjustable, :dependent => :destroy
 
     before_validation :copy_price
