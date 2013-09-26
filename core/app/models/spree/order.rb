@@ -39,7 +39,7 @@ module Spree
     # Needs to happen before save_permalink is called
     before_validation :generate_order_number, :on => :create
 
-    # before_create :create_user
+    before_create :create_user
     #after_create :create_tax_charge!
 
     # TODO: validate the format of the email as well (but we can't rely on authlogic anymore to help with validation)
