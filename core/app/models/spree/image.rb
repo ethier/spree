@@ -14,7 +14,7 @@ module Spree
     
     # save the w,h of the original image (from which others can be calculated)
     # we need to look at the write-queue for images which have not been saved yet
-    after_post_process :find_dimensions
+    # after_post_process :find_dimensions
 
     # Load user defined paperclip settings
     if Spree::Config[:use_s3]
