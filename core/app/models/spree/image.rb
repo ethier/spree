@@ -9,8 +9,8 @@ module Spree
                       :path => ':rails_root/public/spree/products/:id/:style/:basename.:extension',
                       :convert_options => { :all => '-strip' }
 
-    validates_attachment_presence :attachment
-    validate :no_attachment_errors
+    # validates_attachment_presence :attachment
+    # validate :no_attachment_errors
     
     # save the w,h of the original image (from which others can be calculated)
     # we need to look at the write-queue for images which have not been saved yet
