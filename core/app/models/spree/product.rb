@@ -61,7 +61,8 @@ module Spree
 
     accepts_nested_attributes_for :variants, :allow_destroy => true
 
-    validates :name, :price, :permalink, :presence => true
+    #validates :name, :price, :permalink, :presence => true
+    validates :name, :price, :presence => true
 
     attr_accessor :option_values_hash
 
@@ -86,8 +87,11 @@ module Spree
     end
 
 
+    #def to_param
+    #  permalink.present? ? permalink : (permalink_was || name.to_s.to_url)
+    #end
     def to_param
-      permalink.present? ? permalink : (permalink_was || name.to_s.to_url)
+      slug
     end
 
     # returns true if the product has any variants (the master variant is not a member of the variants array)
