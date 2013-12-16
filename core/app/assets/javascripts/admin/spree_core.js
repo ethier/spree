@@ -1,4 +1,4 @@
-//= require jquery-ui
+//= require jquery.ui.all
 //= require jquery.cookie
 //= require jquery.tokeninput
 //= require jquery.delayedobserver
