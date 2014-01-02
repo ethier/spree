@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.license      = %q{BSD-3}
 
   s.add_dependency 'spree_core', version
-  s.add_dependency 'spree_auth', version
+  # s.add_dependency 'spree_auth', version
   #s.add_dependency 'spree_api', version
   s.add_dependency 'spree_dash', version
   #s.add_dependency 'spree_sample', version
