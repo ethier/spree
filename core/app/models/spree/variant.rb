@@ -16,13 +16,13 @@ module Spree
     has_and_belongs_to_many :option_values, :join_table => 'spree_option_values_variants'
     has_many :images, :as => :viewable, :order => :position, :dependent => :destroy
 
-    #validate :check_price
-    validates :price, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
-    validates :cost_price, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true } if self.table_exists? && self.column_names.include?('cost_price')
-    validates :count_on_hand, :numericality => true
+    # validate :check_price
+    # validates :price, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
+    # validates :cost_price, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true } if self.table_exists? && self.column_names.include?('cost_price')
+    # validates :count_on_hand, :numericality => true
 
-    before_save :touch_product
-    after_save :recalculate_product_on_hand, :if => :is_master?
+    # before_save :touch_product
+    # after_save :recalculate_product_on_hand, :if => :is_master?
 
     # default variant scope only lists non-deleted variants
     scope :active, where(:deleted_at => nil)
