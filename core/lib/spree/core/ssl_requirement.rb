@@ -97,6 +97,7 @@ module SslRequirement
       return Spree::Config[:allow_ssl_in_production] if Rails.env.production?
       return Spree::Config[:allow_ssl_in_staging] if Rails.env.staging?
       return Spree::Config[:allow_ssl_in_development_and_test] if (Rails.env.development? or Rails.env.test?)
+      return Spree::Config[:allow_ssl_in_qa] if Rails.env.qa?
     end
 
     def ensure_proper_protocol
