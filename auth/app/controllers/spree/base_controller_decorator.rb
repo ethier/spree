@@ -4,7 +4,6 @@ Spree::BaseController.class_eval do
 
   # graceful error handling for cancan authorization exceptions
   rescue_from CanCan::AccessDenied do |exception|
-    debugger
     return unauthorized
   end
 
