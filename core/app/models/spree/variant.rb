@@ -184,4 +184,4 @@ module Spree
   end
 end
 
-require_dependency 'spree/variant/scopes'
+# require_dependency 'spree/variant/scopes'
