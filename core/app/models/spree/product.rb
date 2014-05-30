@@ -267,4 +267,4 @@ module Spree
   end
 end
 
-require_dependency 'spree/product/scopes'
+# require_dependency 'spree/product/scopes'
